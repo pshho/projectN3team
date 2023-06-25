@@ -9,6 +9,7 @@
 
         body {
             background: white;
+            height: 5000px;
         }
 
         ul li {
@@ -26,7 +27,7 @@
 
         /* header 시작 */
         .header-bar {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             background: white;
@@ -135,7 +136,38 @@
             width: 120%;
         }
         /* header-menu 끝 */
+
+        /* scroll시 header-menu 고정 */
+        .header-menu-fixed {
+            position: fixed;
+            width: 20%;
+            height: calc(30vh / 1.5);
+            margin: 5px auto;
+            text-align: center;
+        }
     </style>
+    <script src="https://code.jquery.com/jquery-3.7.0.js" 
+            integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" 
+            crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $(window).scroll(function() {
+                var scrollPos = $(window).scrollTop();
+
+                if(scrollPos > 100) {
+                    $('#header-menu').css({
+                        'position':'fixed',
+                        'top':'0'
+                    });
+                } else {
+                    $('#header-menu').css({
+                        'position':'absolute',
+                        'top':'calc(30vh / 1.5)'
+                    });
+                }
+            })
+        });
+    </script>
 </head>
 <body>
     <header class="header-bar">
@@ -156,7 +188,7 @@
                 </li>
             </ul>
         </section>
-        <section class="header-menu">
+        <section class="header-menu" id="header-menu">
             <ul>
                 <li>
                     <a href="#">
